@@ -10,6 +10,7 @@ TODO if this was a real api
 - get rid of the panics, those are for my convenience not for prod
 - user interfaces to break up ownership levels 
 - use testify instead of base testing package
+- add more tests than just the 1, though the 1 should be enough to show interface seperation, mocks, etc
 
 TODO to put this on the cloud:
 - dockerize, dual stage build for small image

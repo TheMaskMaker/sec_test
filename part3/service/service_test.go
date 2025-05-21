@@ -21,12 +21,7 @@ func (m *MockDb) Delete(key string) error {
 
 var _ database.DataKind = &MockDb{}
 
-func TestHelloName(t *testing.T) {
-
-}
-
 func TestGetItem(t *testing.T) {
-	t.Error("foo")
 	req := httptest.NewRequest("GET", "/api/123", nil)
 	w := httptest.NewRecorder()
 	m := MockDb{}
@@ -41,5 +36,7 @@ func TestGetItem(t *testing.T) {
 		t.Error(err)
 	}
 	defer res.Body.Close()
-	t.Errorf(string(data))
+	if string(data) != "value" {
+		t.Errorf("the data should say 'value")
+	}
 }
