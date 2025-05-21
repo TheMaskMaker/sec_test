@@ -1,3 +1,4 @@
+//Can just paste into dev console to test
 function GetValue(obj,totalkey) {
     keys = totalkey.split("/")
     pointer = obj
