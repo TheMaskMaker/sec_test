@@ -7,6 +7,9 @@ import (
 	"part3/service"
 )
 
+//For a normal api there would be more endpoint seperation, and I would also use a framework not base http for routing
+//For this tiny example though I have everyything going to /api for ease of use
+//Post and Put takes a service.Poster json body 
 func main() {
 	data, err := database.Initialize("./database/db.json")
 	if err != nil {

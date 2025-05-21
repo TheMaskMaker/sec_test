@@ -8,6 +8,7 @@ import (
 	"sync"
 )
 
+//Interface check
 var _ DataKind = &Data{}
 
 type DataKind interface {
@@ -15,12 +16,14 @@ type DataKind interface {
 	Delete(key string) error
 	Get(key string) (string, bool)
 }
+
 type Data struct {
 	Filename string
 	Stuff    map[string]string
 	FileLock sync.Mutex
 }
 
+//Creates a new DataKind of type Data
 func Initialize(filename string) (DataKind, error) {
 	d := Data{
 		Filename: filename,
@@ -45,10 +48,12 @@ func Initialize(filename string) (DataKind, error) {
 	d.Stuff = temp[0]
 	return &d, nil
 }
+
 func (d *Data) Get(key string) (string, bool) {
 	value, ok := d.Stuff[key]
 	return value, ok
 }
+
 func (d *Data) Update(key, value string) error {
 	d.FileLock.Lock()
 	defer d.FileLock.Unlock()
@@ -68,6 +73,7 @@ func (d *Data) Update(key, value string) error {
 	}
 	return nil
 }
+
 func (d *Data) Delete(key string) error {
 	d.FileLock.Lock()
 	defer d.FileLock.Unlock()
